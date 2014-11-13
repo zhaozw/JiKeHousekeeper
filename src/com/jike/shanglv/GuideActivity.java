@@ -17,14 +17,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import com.jike.shanglv.Enums.PackageKeys;
-import com.jike.shanglv.Enums.Platform;
 import com.jike.shanglv.Enums.SPkeys;
 
-
-/**
- */
 public class GuideActivity extends Activity implements OnPageChangeListener {
 
 	private ViewPager vp;
@@ -113,9 +107,6 @@ public class GuideActivity extends Activity implements OnPageChangeListener {
 		setCurrentDot(arg0);
 	}
 	
-	
-	
-	
 	public class ViewPagerAdapter extends PagerAdapter {
 		// 界面列表
 		private List<View> views;
@@ -161,9 +152,7 @@ public class GuideActivity extends Activity implements OnPageChangeListener {
 						// 设置已经引导
 						setGuided();
 						goHome();
-
 					}
-
 				});
 			}
 			return views.get(arg1);
@@ -177,11 +166,14 @@ public class GuideActivity extends Activity implements OnPageChangeListener {
 //		}
 		private void goHome() {
 			Intent intent =null;
-			if((new MyApp(GuideActivity.this).getHm().get(PackageKeys.PLATFORM.getString())==Platform.B2C)){
-				intent = new Intent(GuideActivity.this, MainActivity.class);
-			}else if((new MyApp(GuideActivity.this).getHm().get(PackageKeys.PLATFORM.getString())==Platform.B2B)){
-				intent = new Intent(GuideActivity.this, ActivityBMenu.class);
-			}
+//			if(sp.getString(SPkeys.utype.getString(), "0").equals(
+//					"2")){
+//				intent = new Intent(GuideActivity.this, MainActivity.class);
+//			}else if(sp.getString(SPkeys.utype.getString(), "0").equals(
+//					"1")){
+//				intent = new Intent(GuideActivity.this, ActivityBMenu.class);
+//			}
+			intent = new Intent(GuideActivity.this, MainActivity.class);
 			GuideActivity.this.startActivity(intent);
 			GuideActivity.this.finish();
 		}

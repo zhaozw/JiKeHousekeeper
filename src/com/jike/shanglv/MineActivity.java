@@ -143,19 +143,20 @@ public class MineActivity extends Activity {
 			@Override
 			public void run() {
 				try {
-					int utype = 0;
 					MyApp ma = new MyApp(context);
-					Platform pf = (Platform) ma.getHm().get(
-							PackageKeys.PLATFORM.getString());
-					if (pf == Platform.B2B)
-						utype = 1;
-					else if (pf == Platform.B2C)
-						utype = 2;
+//					int utype = 0;
+//					Platform pf = (Platform) ma.getHm().get(
+//							PackageKeys.PLATFORM.getString());
+//					if (pf == Platform.B2B)
+//						utype = 1;
+//					else if (pf == Platform.B2C)
+//						utype = 2;
 					String str = "{\"uname\":\""
 							+ sp.getString(SPkeys.lastUsername.getString(), "")
 							+ "\",\"upwd\":\""
 							+ sp.getString(SPkeys.lastPassword.getString(), "")
-							+ "\",\"utype\":\"" + utype + "\"}";
+//							+ "\",\"utype\":\"" + utype 
+							+ "\"}";
 					String param = "action=userlogin&sitekey=&userkey="
 							+ ma.getHm().get(PackageKeys.USERKEY.getString())
 									.toString()

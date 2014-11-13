@@ -26,7 +26,7 @@ public class MyApp {
 	 * 此类中只需更改以下三个值：RELEASE、hm、AndroidManifest中的程序名及图标
 	 */
 	public static boolean RELEASE = true;//测试  or 发布，接口
-	private HashMap<String,Object> hm=self_b_hm;//menghang_hm;//self_hm
+	private HashMap<String,Object> hm=self_hm;//menghang_hm;//self_hm
 	
 //	public static String userkey="5b13658a9fc945e34893f806027d467a";//5b13658a9fc945e34893f806027d467a有效期到2014.09.10
 	public static String sitekey="";
@@ -103,7 +103,7 @@ public class MyApp {
 		/*Android商旅管家0 Android商旅助手1 IOS商旅管家2 IOS商旅助手3  梦航 管家4  梦航 助手5*/
 		
 		//商旅助手
-		self_b_hm.put(PackageKeys.WELCOME_DRAWABLE.getString(), R.drawable.welcome_b);
+//		self_b_hm.put(PackageKeys.WELCOME_DRAWABLE.getString(), R.drawable.welcome_b);
 		self_b_hm.put(PackageKeys.APP_NAME.getString(), R.string.app_name_b);
 		self_b_hm.put(PackageKeys.MENU_LOGO_DRAWABLE.getString(), R.drawable.menu_logo_b);
 		self_b_hm.put(PackageKeys.UPDATE_NOTE.getString(), "jike_b");
@@ -112,7 +112,7 @@ public class MyApp {
 		self_b_hm.put(PackageKeys.ORGIN.getString(),1);
 		
 		//梦航商旅
-		menghang_hm.put(PackageKeys.WELCOME_DRAWABLE.getString(), R.drawable.welcome_menghang);
+//		menghang_hm.put(PackageKeys.WELCOME_DRAWABLE.getString(), R.drawable.welcome_menghang);
 		menghang_hm.put(PackageKeys.APP_NAME.getString(), R.string.app_name_menghang);
 		menghang_hm.put(PackageKeys.MENU_LOGO_DRAWABLE.getString(), R.drawable.menu_logo_menghang);
 		menghang_hm.put(PackageKeys.UPDATE_NOTE.getString(), "menghangshanglv");

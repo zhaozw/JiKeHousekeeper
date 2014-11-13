@@ -35,5 +35,8 @@
     <color name="select">#98aacc</color>
      <color name="ef_gray_bg">#efefef</color>
      <color name="skyblue">#4f849e</color>
+     
+     <color name="GridDividGrayLine">#e3e3e3</color>
+     <color name="color_462C00">#462C00</color>
     
 </resources>

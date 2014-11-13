@@ -54,7 +54,6 @@ import com.jike.shanglv.Models.PolicyList;
 import com.jike.shanglv.NetAndJson.HttpUtils;
 import com.jike.shanglv.NetAndJson.JSONHelper;
 
-
 public class ActivityInlandAirlineticketBooking extends Activity {
 
 	protected static final String ALLPASSENGERSLIST = "ALL_PASSENGERS_LIST";
@@ -142,13 +141,13 @@ public class ActivityInlandAirlineticketBooking extends Activity {
 				e.printStackTrace();
 			}
 			// 仅B2B可进行政策选择
-			if ((new MyApp(context)).getHm().get(
-					PackageKeys.PLATFORM.getString()) == Platform.B2C) {
+			if (sp.getString(SPkeys.utype.getString(), "0").equals(
+					"2")) {
 				zhengce_rl.setVisibility(View.GONE);
 				if (getOrderWayType() == SingleOrDouble.doubleWayBack)
 					zhengce_rl3.setVisibility(View.GONE);
-			} else if ((new MyApp(context)).getHm().get(
-					PackageKeys.PLATFORM.getString()) == Platform.B2B) {
+			} else if (sp.getString(SPkeys.utype.getString(), "0").equals(
+					"1")) {
 				zhengce_rl.setVisibility(View.VISIBLE);
 				if (getOrderWayType() == SingleOrDouble.doubleWayBack)
 					zhengce_rl3.setVisibility(View.VISIBLE);
@@ -218,11 +217,13 @@ public class ActivityInlandAirlineticketBooking extends Activity {
 
 		// B2C保险固定为20，B2B保险价格从服务器获取
 		MyApp ma = new MyApp(context);
-		Platform pf = (Platform) ma.getHm().get(
-				PackageKeys.PLATFORM.getString());
-		if (pf == Platform.B2C) {
+//		Platform pf = (Platform) ma.getHm().get(
+//				PackageKeys.PLATFORM.getString());
+		if (sp.getString(SPkeys.utype.getString(), "0").equals(
+				"2")) {
 			baoxian_unitPrice = 20;
-		} else if (pf == Platform.B2B) {
+		} else if (sp.getString(SPkeys.utype.getString(), "0").equals(
+				"1")) {
 			startQueryBaoxian();
 		}
 		// 对于常用联系人，直接返回上次订票时的联系人手机号，若不存在则返回本机手机号码
@@ -808,7 +809,8 @@ public class ActivityInlandAirlineticketBooking extends Activity {
 		cf.setIsspe(cabin.getIsSpe());
 		cf.setOil(flight.getOil());
 		cf.setPlane(flight.getPlaneModel());
-		if ((new MyApp(context)).getHm().get(PackageKeys.PLATFORM.getString()) == Platform.B2C) {
+		if (sp.getString(SPkeys.utype.getString(), "0").equals(
+				"2")) {
 			cf.setPolicyid(cabin.getPolicyID());
 			cf.setPolicytype(cabin.getIsSpePolicy() == "true" ? "1" : "0");
 			cf.setRate(cabin.getRate());
@@ -817,8 +819,8 @@ public class ActivityInlandAirlineticketBooking extends Activity {
 			cf.setRebate(cabin.getRate());
 			cf.setRemark("");
 			cf.setUserrebate(cabin.getUserRate());
-		} else if ((new MyApp(context)).getHm().get(
-				PackageKeys.PLATFORM.getString()) == Platform.B2B) {
+		} else if (sp.getString(SPkeys.utype.getString(), "0").equals(
+				"1")) {
 			cf.setPolicyid(selectedPolicyB.getPolicyid());
 			cf.setPolicytype(selectedPolicyB.getIsspepolicy());
 			cf.setRate(selectedPolicyB.getUserrate());
@@ -1031,8 +1033,8 @@ public class ActivityInlandAirlineticketBooking extends Activity {
 										contact_person_phone_et.getText()
 												.toString()).commit();
 					}
-					if ((new MyApp(context)).getHm().get(
-							PackageKeys.PLATFORM.getString()) == Platform.B2B
+					if (sp.getString(SPkeys.utype.getString(), "0").equals(
+							"1")
 							&& selectedPolicyB == null) {
 						final CustomerAlertDialog cad3 = new CustomerAlertDialog(
 								context, true);
@@ -1156,7 +1158,6 @@ public class ActivityInlandAirlineticketBooking extends Activity {
 			default:
 				break;
 			}
-
 			if (requestCode == 13) {
 				if (data == null)
 					return;

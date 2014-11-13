@@ -23,7 +23,9 @@ public enum SPkeys {
 	gnjpContactPhone("gnjpContactPhone"),	//国内机票下单，上次的联系人手机号码
 	gjjpContactPhone("gjjpContactPhone"),	//国际机票需求单，上次的联系人手机号码
 	trainContactPhone("trainContactPhone"),	//火车票，上次的联系人手机号码
-	isFirstIn("isFirstIn")   //是否第一次进入  引导页、欢迎页切换
+	isFirstIn("isFirstIn"),   //是否第一次进入  引导页、欢迎页切换
+	
+	chongZhiJinE("chongZhiJinE")
 	
 	;
 

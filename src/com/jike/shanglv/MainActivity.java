@@ -31,7 +31,6 @@ import com.jike.shanglv.NetAndJson.JSONHelper;
 import com.jike.shanglv.NetAndJson.UserInfo;
 import com.jike.shanglv.Update.UpdateManager;
 
-
 @SuppressWarnings({ "deprecation", "unused" })
 public class MainActivity extends ActivityGroup implements
 		OnCheckedChangeListener {
@@ -51,7 +50,7 @@ public class MainActivity extends ActivityGroup implements
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_main);
 			((MyApplication) getApplication()).addActivity(this);
-			goB2BHome();
+//			goB2BHome();
 			initView();
 			initHomePage();
 			radio_group.setOnCheckedChangeListener(this);
@@ -72,7 +71,7 @@ public class MainActivity extends ActivityGroup implements
 
 	/*
 	 * 如果为B2B程序，则跳到商旅助手的主菜单界面
-	 */
+	 
 	private void goB2BHome() {
 		if ((new MyApp(MainActivity.this).getHm().get(
 				PackageKeys.PLATFORM.getString()) == Platform.B2B)) {
@@ -80,26 +79,27 @@ public class MainActivity extends ActivityGroup implements
 			MainActivity.this.startActivity(intent);
 			MainActivity.this.finish();
 		}
-	}
+	}*/
 
 	private void queryUserInfo() {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					int utype = 0;
 					MyApp ma = new MyApp(context);
-					Platform pf = (Platform) ma.getHm().get(
-							PackageKeys.PLATFORM.getString());
-					if (pf == Platform.B2B)
-						utype = 1;
-					else if (pf == Platform.B2C)
-						utype = 2;
+//					int utype = 0;
+//					Platform pf = (Platform) ma.getHm().get(
+//							PackageKeys.PLATFORM.getString());
+//					if (pf == Platform.B2B)
+//						utype = 1;
+//					else if (pf == Platform.B2C)
+//						utype = 2;
 					String str = "{\"uname\":\""
 							+ sp.getString(SPkeys.lastUsername.getString(), "")
 							+ "\",\"upwd\":\""
 							+ sp.getString(SPkeys.lastPassword.getString(), "")
-							+ "\",\"utype\":\"" + utype + "\"}";
+//							+ "\",\"utype\":\"" + utype 
+							+ "\"}";
 					String param = "action=userlogin&sitekey=&userkey="
 							+ ma.getHm().get(PackageKeys.USERKEY.getString())
 									.toString()
@@ -164,6 +164,9 @@ public class MainActivity extends ActivityGroup implements
 						sp.edit()
 								.putBoolean(SPkeys.loginState.getString(), true)
 								.commit();
+						sp.edit()
+							.putString(SPkeys.utype.getString(), user.getUsertype())
+						.commit();
 					} else if (state.equals("1003")) {
 						sp.edit().putString(SPkeys.userid.getString(), "")
 								.commit();
@@ -172,6 +175,9 @@ public class MainActivity extends ActivityGroup implements
 						sp.edit()
 								.putBoolean(SPkeys.loginState.getString(),
 										false).commit();
+						sp.edit().remove(SPkeys.showCustomer.toString()).commit();
+						sp.edit().remove(SPkeys.showDealer.toString()).commit();
+						sp.edit().remove(SPkeys.utype.toString()).commit();
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -187,7 +193,7 @@ public class MainActivity extends ActivityGroup implements
 			mIntent = new Intent(this, OrderActivity.class);
 			break;
 		case 1:
-			mIntent = new Intent(this, HomeActivity.class);
+			mIntent = new Intent(this, HomeActivityNew.class);
 			break;
 		case 2:
 			mIntent = new Intent(this, MineActivity.class);
@@ -237,7 +243,7 @@ public class MainActivity extends ActivityGroup implements
 
 	private void initHomePage() {
 		container.removeAllViews();
-		mIntent = new Intent(this, HomeActivity.class);
+		mIntent = new Intent(this, HomeActivityNew.class);
 		mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		Window subActivity = getLocalActivityManager().startActivity(
 				"subActivity", mIntent);

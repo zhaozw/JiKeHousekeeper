@@ -392,4 +392,8 @@
     <string name="soft_update_later">稍后更新</string>
     <string name="soft_updating">正在更新</string>
     <string name="soft_update_cancel">取消</string>
+    
+    
+    <string name="shou">收款</string>
+    <string name="logout">切换账户</string>
 </resources>

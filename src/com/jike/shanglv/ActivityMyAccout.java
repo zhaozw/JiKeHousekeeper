@@ -115,6 +115,9 @@ public class ActivityMyAccout extends Activity {
 							sp.edit()
 									.putBoolean(SPkeys.loginState.getString(),
 											false).commit();
+							sp.edit().remove(SPkeys.showCustomer.toString()).commit();
+							sp.edit().remove(SPkeys.showDealer.toString()).commit();
+							sp.edit().remove(SPkeys.utype.toString()).commit();
 							finish();
 							cad.dismiss();
 						}
@@ -147,5 +150,4 @@ public class ActivityMyAccout extends Activity {
 			}
 		}
 	};
-
 }

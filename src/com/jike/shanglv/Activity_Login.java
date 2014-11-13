@@ -40,7 +40,6 @@ import com.jike.shanglv.NetAndJson.JSONHelper;
 import com.jike.shanglv.NetAndJson.UserInfo;
 import com.jike.shanglv.Update.UpdateManager;
 
-
 public class Activity_Login extends Activity {
 
 	private ImageView back_imgbtn;
@@ -127,8 +126,10 @@ public class Activity_Login extends Activity {
 			autologin_rl.setOnClickListener(myListener);
 			registernew_tv.setOnClickListener(myListener);
 			forgetpassword_tv.setOnClickListener(myListener);
-			if ((new MyApp(context)).getHm().get(
-					PackageKeys.PLATFORM.getString()) == Platform.B2B) {
+//			if ((new MyApp(context)).getHm().get(
+//					PackageKeys.PLATFORM.getString()) == Platform.B2B)
+			if(sp.getString(SPkeys.utype.getString(), "0").equals(
+					"1")){
 				registernew_tv.setVisibility(View.INVISIBLE);
 			}
 		} catch (Exception e) {
@@ -198,6 +199,12 @@ public class Activity_Login extends Activity {
 						sp.edit()
 								.putString(SPkeys.useremail.getString(),
 										user.getEmail()).commit();
+						sp.edit().putString(SPkeys.utype.getString(),
+								user.getUsertype()).commit();
+						sp.edit().putString(SPkeys.showCustomer.getString(),
+								user.getShowCustomer()).commit();
+						sp.edit().putString(SPkeys.showDealer.getString(),
+								user.getShowDealer()).commit();
 						// 其他信息以后用时再增加
 						// 登录后将登录状态置为true
 						sp.edit()
@@ -219,6 +226,7 @@ public class Activity_Login extends Activity {
 						sp.edit().remove(SPkeys.amount.getString()).commit();
 						sp.edit().remove(SPkeys.userphone.getString()).commit();
 						sp.edit().remove(SPkeys.useremail.getString()).commit();
+						sp.edit().remove(SPkeys.utype.getString()).commit();
 						if (state.equals("9999")) {
 							MyApp ma = new MyApp(context);
 							UpdateManager manager = new UpdateManager(context,
@@ -313,10 +321,7 @@ public class Activity_Login extends Activity {
 						@Override
 						public void run() {
 							try {
-								int utype = 0;
 								MyApp ma = new MyApp(context);
-								Platform pf = (Platform) ma.getHm().get(
-										PackageKeys.PLATFORM.getString());
 								String version = "";
 								try {
 									version = context
@@ -326,17 +331,20 @@ public class Activity_Login extends Activity {
 								} catch (NameNotFoundException e) {
 									e.printStackTrace();
 								}
-								if (pf == Platform.B2B)
-									utype = 1;
-								else if (pf == Platform.B2C)
-									utype = 2;
+//								int utype = 0;
+//								Platform pf = (Platform) ma.getHm().get(
+//										PackageKeys.PLATFORM.getString());
+//								if (pf == Platform.B2B)
+//									utype = 1;
+//								else if (pf == Platform.B2C)
+//									utype = 2;
 								String str = "{\"uname\":\""
 										+ uername_input_et.getText().toString()
 												.trim()
 										+ "\",\"upwd\":\""
 										+ password_input_et.getText()
 												.toString().trim()
-										+ "\",\"utype\":\"" + utype
+//										+ "\",\"utype\":\"" + utype
 										+ "\",\"version\":\"" + version + "\"}";
 								String param = "action=userlogin&sitekey=&userkey="
 										+ ma.getHm()

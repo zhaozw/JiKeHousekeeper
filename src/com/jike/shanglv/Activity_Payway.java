@@ -1,9 +1,5 @@
 package com.jike.shanglv;
 
-import com.jike.shanglv.Common.CommonFunc;
-import com.jike.shanglv.Enums.SPkeys;
-
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import com.jike.shanglv.Common.CommonFunc;
+import com.jike.shanglv.Enums.SPkeys;
 
 public class Activity_Payway extends Activity {
 
@@ -63,9 +61,10 @@ public class Activity_Payway extends Activity {
 					startActivity(intent);
 					break;
 				case R.id.sc_pay_rl:
-					Intent intent5 = new Intent();
-					intent5.setClassName(getApplication(),
-							"com.jike.mpos.newversion.MposWelcomeActivity");
+					Intent intent5 = new Intent(context,com.jike.shanglv.pos.jike.mpos.newversion.MopsWelcomeActivity.class);
+					sp.edit().putString(SPkeys.chongZhiJinE.getString(), amount).commit();
+					//					intent5.setClass(getApplication(),
+//							com.jike.shanglv.pos.jike.mpos.newversion.MopsWelcomeActivity.class);
 					startActivity(intent5);
 					break;
 				case R.id.back_imgbtn:

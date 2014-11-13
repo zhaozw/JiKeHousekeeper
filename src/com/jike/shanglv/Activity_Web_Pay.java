@@ -1,8 +1,6 @@
 //web÷ß∏∂“≥√Ê
 package com.jike.shanglv;
 
-
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;

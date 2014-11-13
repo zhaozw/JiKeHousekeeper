@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ImageView;
-
 import com.jike.shanglv.Enums.PackageKeys;
 import com.jike.shanglv.Enums.Platform;
 import com.jike.shanglv.Enums.SPkeys;
@@ -86,11 +85,12 @@ public class WelcomeActivity  extends Activity {
 
 	private void goHome() {
 		Intent intent =null;
-		if((new MyApp(WelcomeActivity.this).getHm().get(PackageKeys.PLATFORM.getString())==Platform.B2C)){
-			intent = new Intent(WelcomeActivity.this, MainActivity.class);
-		}else if((new MyApp(WelcomeActivity.this).getHm().get(PackageKeys.PLATFORM.getString())==Platform.B2B)){
-			intent = new Intent(WelcomeActivity.this, ActivityBMenu.class);
-		}
+//		if((new MyApp(WelcomeActivity.this).getHm().get(PackageKeys.PLATFORM.getString())==Platform.B2C)){
+//			intent = new Intent(WelcomeActivity.this, MainActivity.class);
+//		}else if((new MyApp(WelcomeActivity.this).getHm().get(PackageKeys.PLATFORM.getString())==Platform.B2B)){
+//			intent = new Intent(WelcomeActivity.this, ActivityBMenuNew.class);
+//		}
+		intent = new Intent(WelcomeActivity.this, MainActivity.class);
 		WelcomeActivity.this.startActivity(intent);
 		WelcomeActivity.this.finish();
 	}

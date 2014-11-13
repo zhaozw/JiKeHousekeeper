@@ -8,12 +8,13 @@
 	<classpathentry kind="lib" path="E:/Source Code/JikePart/libs/locSDK_4.2.jar"/>
 	<classpathentry kind="lib" path="E:/Source Code/JikePart/libs/universal-image-loader-1.8.6-with-sources.jar"/>
 	<classpathentry kind="lib" path="E:/Source Code/JikePart/libs/baidumapapi_v3_1_0.jar"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="lib" path="E:/adt-bundle-windows-x86_64-20140702_old/sdk/platforms/android-17/android.jar" sourcepath="E:/adt-bundle-windows-x86_64-20140702_old/sdk/sources/android-17">
 		<accessrules>
 			<accessrule kind="nonaccessible" pattern="com/android/internal/**"/>
 		</accessrules>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="E:/Source Code/JikePart_Library/Jike_Mpos_New1/Jike_Mpos_New/libs/java_lib.jar"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
