@@ -20,7 +20,15 @@ amname:虚拟账号名称(utype为3\4无效)
  */
 public class UserInfo {
 	String userid,     username,     mobile,     email,     sdate,     edate,     companyname,     companyname_jc,     smssign,     smsamount,     openvam,     ammount,     amnousemount,     amname,     siteid
-			,showDealer,showCustomer,usertype;
+			,showDealer,showCustomer,usertype,opensupperpay;
+
+	public String getOpensupperpay() {
+		return opensupperpay;
+	}
+
+	public void setOpensupperpay(String opensupperpay) {
+		this.opensupperpay = opensupperpay;
+	}
 
 	public String getUsertype() {
 		return usertype;

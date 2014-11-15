@@ -14,6 +14,7 @@ public enum SPkeys {
 	showDealer("showDealer"),
 	showCustomer("showCustomer"),
 	utype("utype"),
+	opensupperpay("opensupperpay"),
 	
 	UserInfoJson("UserInfoJson"),
 	lastUsername("lastUsername"),

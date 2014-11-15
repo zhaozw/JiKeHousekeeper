@@ -312,12 +312,10 @@ public class MainActivity extends BaseActivity {
 
 		public void afterTextChanged(Editable s) {
 			try{
-				
 				if(receiptNumber.getText().length() == 0){
 					error.setVisibility(View.GONE);
 					return;
 				}
-				
 				Float ss = Float.parseFloat(receiptNumber.getText().toString());
 				ss = (float) (ss*(0.994));
 				

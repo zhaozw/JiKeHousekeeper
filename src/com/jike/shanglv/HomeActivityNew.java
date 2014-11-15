@@ -62,6 +62,7 @@ public class HomeActivityNew extends Activity {
 			sp = getSharedPreferences(SPkeys.SPNAME.getString(), 0);
 			cells = new ArrayList<HomeGridCell>();
 			grid = (MyGridView) findViewById(R.id.grid);
+			grid.setFocusable(false);//解决ScrollView起始位置不是最顶部的办法
 			gridCells();
 
 			initAd();
@@ -253,7 +254,7 @@ public class HomeActivityNew extends Activity {
 		adsList.add(new AdShow("http://b2b.51jp.cn/App_Themes/default/Images/Login_v2/banner0.png", "http://b2b.51jp.cn/Wallet/cash", "商旅钱包，可以省钱的钱包","商旅钱包"));
 		adsList.add(new AdShow("http://b2b.51jp.cn/App_Themes/default/Images/Login_v2/banner1.jpg","http://www.51jp.cn/Cooperation.asp","商旅管家，一站式服务平台","商旅管家"));
 		
-		imageResId = new int[] { R.drawable.aa, R.drawable.bb, R.drawable.cc };
+		imageResId = new int[] { R.drawable.ad_two, R.drawable.ad_one, R.drawable.ad_three };
 		titles = new String[imageResId.length];
 		titles[0] = "舌尖上的美食，大闸蟹";
 		titles[1] = "商旅钱包，可以省钱的钱包";

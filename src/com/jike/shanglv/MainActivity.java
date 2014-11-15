@@ -167,6 +167,8 @@ public class MainActivity extends ActivityGroup implements
 						sp.edit()
 							.putString(SPkeys.utype.getString(), user.getUsertype())
 						.commit();
+						sp.edit().putString(SPkeys.opensupperpay.getString(),
+								user.getOpensupperpay()).commit();
 					} else if (state.equals("1003")) {
 						sp.edit().putString(SPkeys.userid.getString(), "")
 								.commit();
