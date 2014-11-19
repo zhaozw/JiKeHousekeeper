@@ -32,6 +32,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -91,6 +92,7 @@ public class ActivityTrainBooking extends Activity {
 	private CustomProgressDialog progressdialog;
 	MyListAdapter adapter_xibie;
 
+	private LinearLayout lay_stop;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		try {// TODO Auto-generated method stub
@@ -110,6 +112,8 @@ public class ActivityTrainBooking extends Activity {
 		passengerList = new ArrayList<Passenger>();
 		allPassengerList = new ArrayList<Passenger>();
 
+		lay_stop=(LinearLayout) findViewById(R.id.lay_stop);
+		
 		xibie_listview = (ListView) findViewById(R.id.xibie_listview);
 		add_passager_rl = (RelativeLayout) findViewById(R.id.add_passager_rl);
 		baoxian_rl = (RelativeLayout) findViewById(R.id.baoxian_rl);
@@ -221,6 +225,15 @@ public class ActivityTrainBooking extends Activity {
 			contact_person_phone_et.setText(sp.getString(
 					SPkeys.trainContactPhone.getString(), ""));
 		caculateMoney();
+		
+		lay_stop.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				startActivity(new Intent(context, ActivityTrainStop.class));
+				
+			}
+		});
 	}
 
 	private void caculateMoney() {

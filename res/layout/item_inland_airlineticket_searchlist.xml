@@ -2,39 +2,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="15dp"
+    android:background="@drawable/list_item_color_bg"
     android:paddingBottom="15dp"
-    android:background="@drawable/list_item_color_bg" >
+    android:paddingTop="15dp" >
 
     <RelativeLayout
         android:id="@+id/one_rl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        >
+        android:paddingRight="10dp" >
 
         <LinearLayout
             android:id="@+id/city_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
-           
+
             <TextView
                 android:id="@+id/startCity_tv"
                 style="@style/InlandAirlineListCityTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="上海" 
-                android:textSize="16sp">
+                android:text="上海"
+                android:textSize="16sp" >
             </TextView>
 
             <TextView
                 style="@style/InlandAirlineListCityTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" - " 
-                android:textSize="16sp">
+                android:text=" - "
+                android:textSize="16sp" >
             </TextView>
 
             <TextView
@@ -42,11 +41,12 @@
                 style="@style/InlandAirlineListCityTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="北京" 
-                android:textSize="16sp">
+                android:text="北京"
+                android:textSize="16sp" >
             </TextView>
         </LinearLayout>
-         <LinearLayout
+
+        <LinearLayout
             android:id="@+id/time_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,7 +78,6 @@
                 android:text="09:30"
                 android:textSize="16sp" >
             </TextView>
-
         </LinearLayout>
 
         <LinearLayout
@@ -119,6 +118,7 @@
         android:layout_below="@id/one_rl"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="2dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <TextView
@@ -129,11 +129,13 @@
             android:textColor="@color/blue_title_color"
             android:textSize="16sp" >
         </TextView>
-         <TextView
+
+        <TextView
             android:id="@+id/FlightNo_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
+            android:singleLine="true"
             android:text="ZH9959"
             android:textColor="@color/black6"
             android:textSize="16sp" >
@@ -144,6 +146,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
+            android:singleLine="true"
             android:text="739中"
             android:textColor="@color/black6"
             android:textSize="17sp" >
@@ -151,24 +154,26 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/flight_rl"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:gravity="center_vertical" >
+        android:layout_below="@+id/one_rl"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="10sp"
+        android:layout_toRightOf="@+id/flight_rl"
+        android:gravity="center_vertical|right" >
 
         <TextView
             android:id="@+id/CabinName_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
-			android:ellipsize="end"
-			android:width="60dp"
             android:text="经济舱"
             android:textColor="@color/black6"
-            android:textSize="16sp" >
+            android:textSize="16sp"
+            android:width="60dp" >
         </TextView>
 
         <TextView
@@ -177,31 +182,33 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:text="3张"
+            android:singleLine="true"
             android:textColor="#CD3737"
             android:textSize="16sp" >
         </TextView>
 
-        <LinearLayout 
+        <LinearLayout
             android:id="@+id/fanMoney_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            >
-	        <ImageView
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_marginLeft="6dp"
-	            android:background="@drawable/icon_flight_fan" />
-	
-	        <TextView
-	            android:id="@+id/fanMoney_tv"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_marginLeft="4dp"
-	            android:text="￥32"
-	            android:textColor="#FD8F23"
-	            android:textSize="16sp" >
-	        </TextView>
+            android:gravity="center_vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/icon_flight_fan" />
+
+            <TextView
+                android:id="@+id/fanMoney_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:text="￥32"
+                android:singleLine="true"
+                android:textColor="#FD8F23"
+                android:textSize="16sp" >
+            </TextView>
         </LinearLayout>
     </LinearLayout>
 

@@ -52,7 +52,6 @@ import com.jike.shanglv.Models.HotelRoom;
 import com.jike.shanglv.NetAndJson.HttpUtils;
 import com.jike.shanglv.NetAndJson.JSONHelper;
 
-
 public class ActivityHotelDetail extends Activity {
 
 	protected static final String FLIGHTINFO = "FLIGHT_DETAIL_INFO";
@@ -686,6 +685,8 @@ public class ActivityHotelDetail extends Activity {
 					convertView = inflater.inflate(
 							R.layout.item_hotel_roomlist, null);
 				}
+				TextView tv_roomtype = (TextView) convertView
+						.findViewById(R.id.tv_roomtype);
 				TextView room_title_tv = (TextView) convertView
 						.findViewById(R.id.room_title_tv);
 				TextView room_area_tv = (TextView) convertView
@@ -716,10 +717,12 @@ public class ActivityHotelDetail extends Activity {
 				if (str.get(position).getRoomtype().equals("0")) {// 0œ÷∏∂£¨1‘§∏∂
 					fanMoney_rl.setVisibility(View.VISIBLE);
 					yufujia_tv.setVisibility(View.INVISIBLE);
+					tv_roomtype.setText("œ÷∏∂");
 					fanMoney_tv.setText("£§" + str.get(position).getJiangjin());
 				} else if (str.get(position).getRoomtype().equals("1")) {// 0œ÷∏∂£¨1‘§∏∂
 					fanMoney_rl.setVisibility(View.INVISIBLE);
 					yufujia_tv.setVisibility(View.VISIBLE);
+					tv_roomtype.setText("‘§∏∂");
 				}
 
 				if (str.get(position).getAvailableAmount().trim().equals("∂©ÕÍ")) {

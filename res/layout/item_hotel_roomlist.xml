@@ -60,6 +60,18 @@
                 android:text="有房"
                 android:textColor="@color/price_yellow"
                 android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_roomtype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/remark_tv"
+                android:layout_toRightOf="@+id/AvailableAmount_tv"
+                android:layout_alignTop="@+id/AvailableAmount_tv"
+                android:layout_marginLeft="10sp"
+                android:textColor="@color/price_yellow"
+                android:text="现付" />
+
         </RelativeLayout>
 
         <RelativeLayout

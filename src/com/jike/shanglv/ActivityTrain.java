@@ -22,7 +22,6 @@ import com.jike.shanglv.Common.DateUtil;
 import com.jike.shanglv.Enums.SPkeys;
 import com.jike.shanglv.NetAndJson.HttpUtils;
 
-
 public class ActivityTrain extends Activity {
 
 	private TextView startcity_tv, endcity_tv, startcity_code_tv,

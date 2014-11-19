@@ -72,8 +72,9 @@
             android:name=".WelcomeActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
-               <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -83,7 +84,7 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
-        <!-- 商旅助手菜单页面NEW   原来的系统找不到，故新建此页  -->
+        <!-- 商旅助手菜单页面NEW   原来的系统找不到，故新建此页 -->
         <activity
             android:name=".ActivityBMenuNew"
             android:configChanges="keyboardHidden|orientation"
@@ -475,6 +476,10 @@
             android:screenOrientation="nosensor"
             android:theme="@android:style/Theme.Light.NoTitleBar"
             android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.jike.shanglv.ActivityTrainStop"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
     </application>
 
 </manifest>

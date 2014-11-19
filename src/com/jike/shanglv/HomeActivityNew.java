@@ -17,6 +17,7 @@ import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.jike.shanglv.Common.MyGridView;
 import com.jike.shanglv.Enums.PackageKeys;
 import com.jike.shanglv.Enums.SPkeys;
@@ -43,13 +45,14 @@ public class HomeActivityNew extends Activity {
 	private ArrayList<HomeGridCell> cells;
 	private MyAdapter adapter;
 	// 默认有的栏目为：国内、国际、酒店、火车票、航班、话费、账户充值
-	int[] defaultImg = { R.drawable.gnjp, R.drawable.gjjp,
-			R.drawable.jdyd, R.drawable.hcp,
-			R.drawable.hbdt, R.drawable.hfcz,
-			R.drawable.zhcz };
+	int[] defaultImg = { R.drawable.gnjp, R.drawable.gjjp, R.drawable.jdyd,
+			R.drawable.hcp, R.drawable.hbdt, R.drawable.hfcz, R.drawable.zhcz };
 	String[] defaultText = { "国内机票", "国际机票", "酒店预订", "火车票", "航班动态", "话费充值",
 			"账户充值" };
-	Class<?>[] defaultActivities={ActivityInlandAirlineticket.class,ActivityInternationalAirlineticket.class,ActivityHotel.class,ActivityTrain.class,ActivityHangbandongtai.class,ActivityHuafeichongzhi.class,ActivityZhanghuchongzhi.class};
+	Class<?>[] defaultActivities = { ActivityInlandAirlineticket.class,
+			ActivityInternationalAirlineticket.class, ActivityHotel.class,
+			ActivityTrain.class, ActivityHangbandongtai.class,
+			ActivityHuafeichongzhi.class, ActivityZhanghuchongzhi.class };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +65,12 @@ public class HomeActivityNew extends Activity {
 			sp = getSharedPreferences(SPkeys.SPNAME.getString(), 0);
 			cells = new ArrayList<HomeGridCell>();
 			grid = (MyGridView) findViewById(R.id.grid);
-			grid.setFocusable(false);//解决ScrollView起始位置不是最顶部的办法
+			grid.setFocusable(false);// 解决ScrollView起始位置不是最顶部的办法
 			gridCells();
 
 			initAd();
-//			findViewById(R.id.ad_include).setVisibility(View.GONE);
-//			findViewById(R.id.title_bg).setVisibility(View.VISIBLE);
+			// findViewById(R.id.ad_include).setVisibility(View.GONE);
+			// findViewById(R.id.title_bg).setVisibility(View.VISIBLE);
 
 			MyApp mApp = new MyApp(getApplicationContext());
 			((ImageView) findViewById(R.id.menu_logo))
@@ -81,10 +84,14 @@ public class HomeActivityNew extends Activity {
 	private ArrayList<HomeGridCell> getDefaultCellsData() {
 		ArrayList<HomeGridCell> arrayList = new ArrayList<HomeGridCell>();
 		for (int i = 0; i < defaultImg.length; i++) {
-			Intent intent=new Intent(context,defaultActivities[i]);
-			HomeGridCell hgc = new HomeGridCell(i, defaultImg[i],
-					defaultText[i],intent);
-			arrayList.add(hgc);
+			try {
+				Intent intent = new Intent(context, defaultActivities[i]);
+				HomeGridCell hgc = new HomeGridCell(i, defaultImg[i],
+						defaultText[i], intent);
+				arrayList.add(hgc);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return arrayList;
 	}
@@ -94,36 +101,30 @@ public class HomeActivityNew extends Activity {
 		try {
 			cells = getDefaultCellsData();
 			if (sp.getString(SPkeys.utype.getString(), "0").equals("1")) {// B2B
-				Intent intent3 = new Intent(context,
-						Activity_Web_Frame.class);
+				Intent intent3 = new Intent(context, Activity_Web_Frame.class);
 				intent3.putExtra(Activity_Web_Frame.TITLE, "商学院");
 				intent3.putExtra(Activity_Web_Frame.URL, getResources()
 						.getString(R.string.shangxueyuan_url));
-				Intent intent = new Intent(context,
-						Activity_Web_Frame.class);
+				Intent intent = new Intent(context, Activity_Web_Frame.class);
 				intent.putExtra(Activity_Web_Frame.TITLE, "微平台");
 				intent.putExtra(Activity_Web_Frame.URL, getResources()
 						.getString(R.string.weipingtai_url));
-				cells.add(new HomeGridCell(-1, R.drawable.sxy, "商学院",intent3));
-				cells.add(new HomeGridCell(-1, R.drawable.wpt, "微平台",intent));
+				cells.add(new HomeGridCell(-1, R.drawable.sxy, "商学院", intent3));
+				cells.add(new HomeGridCell(-1, R.drawable.wpt, "微平台", intent));
 			}
 			if (sp.getString(SPkeys.showCustomer.getString(), "0").equals("1")) {
-				Intent intent2 = new Intent(context,
-						ActivityClientManage.class);
+				Intent intent2 = new Intent(context, ActivityClientManage.class);
 				intent2.putExtra(
 						ActivityClientManageSetGrad.DISPLAY_TYPENAME_STRING,
 						ActivityClientManageSetGrad.CUSTOMER_DISPLAYNAME);
-				cells.add(new HomeGridCell(-1, R.drawable.khgl,
-						"客户管理",intent2));
+				cells.add(new HomeGridCell(-1, R.drawable.khgl, "客户管理", intent2));
 			}
 			if (sp.getString(SPkeys.showDealer.toString(), "0").equals("1")) {
-				Intent intent1 = new Intent(context,
-						ActivityClientManage.class);
+				Intent intent1 = new Intent(context, ActivityClientManage.class);
 				intent1.putExtra(
 						ActivityClientManageSetGrad.DISPLAY_TYPENAME_STRING,
 						ActivityClientManageSetGrad.DEALER_DISPLAYNAME);
-				cells.add(new HomeGridCell(-1, R.drawable.fxgl,
-						"分销管理",intent1));
+				cells.add(new HomeGridCell(-1, R.drawable.fxgl, "分销管理", intent1));
 			}
 
 			adapter = new MyAdapter(context, cells);
@@ -164,7 +165,8 @@ public class HomeActivityNew extends Activity {
 			int size = arrayList.size();
 			if (size % 3 > 0) {
 				for (int i = 0; i < 3 - size % 3; i++) {
-					arrayList.add(new HomeGridCell(-1, R.drawable.blank75, " ",null));
+					arrayList.add(new HomeGridCell(-1, R.drawable.blank75,
+							"null", null));
 				}
 			}
 		}
@@ -176,24 +178,29 @@ public class HomeActivityNew extends Activity {
 
 		@Override
 		public Object getItem(int arg0) {
-			// TODO Auto-generated method stub
-			return null;
+			return arrayList.get(arg0);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
-			return 0;
+			return position;
 		}
 
 		@SuppressLint("ViewHolder")
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View view = View.inflate(mContext, R.layout.item_home_grid, null);
-			ImageView img = (ImageView) view.findViewById(R.id.img);
-			TextView text = (TextView) view.findViewById(R.id.text);
-			img.setImageResource(arrayList.get(position).getImg());
-			text.setText(arrayList.get(position).getName());
+			try {
+				ImageView img = (ImageView) view.findViewById(R.id.img);
+				TextView text = (TextView) view.findViewById(R.id.text);
+				img.setImageResource(arrayList.get(position).getImg());
+				if (arrayList.get(position).getName() == "null") {
+					view.setFocusable(true);
+				} else {
+					text.setText(arrayList.get(position).getName());
+				}
+			} catch (Exception e) {
+			}
 			return view;
 		}
 	}
@@ -206,8 +213,8 @@ public class HomeActivityNew extends Activity {
 				// arg1是当前item的view，通过它可以获得该项中的各个组件。
 				// arg2是当前item的ID。这个id根据你在适配器中的写法可以自己定义。
 				// arg3是当前的item在listView中的相对位置！
-//				Toast.makeText(context, "arg2:" + arg2 + " arg3:" + arg3,
-//						Toast.LENGTH_SHORT).show();
+				// Toast.makeText(context, "arg2:" + arg2 + " arg3:" + arg3,
+				// Toast.LENGTH_SHORT).show();
 				arg1.setPressed(false);
 				arg1.setSelected(false);
 				if (!sp.getBoolean(SPkeys.loginState.getString(), false)) {
@@ -220,10 +227,7 @@ public class HomeActivityNew extends Activity {
 			}
 		}
 	}
-	
 
-	
-	
 	/*
 	 * 以下代码为广告位的切换
 	 */
@@ -249,45 +253,58 @@ public class HomeActivityNew extends Activity {
 	};
 
 	private void initAd() {
-		adsList=new ArrayList<AdShow>();
-		adsList.add(new AdShow("http://b2b.51jp.cn/App_Themes/default/Images/Login_v2/banner_dzx.gif","http://b2b.51jp.cn/ComInfoDetail.aspx?id=198","舌尖上的美食，大闸蟹","大闸蟹"));
-		adsList.add(new AdShow("http://b2b.51jp.cn/App_Themes/default/Images/Login_v2/banner0.png", "http://b2b.51jp.cn/Wallet/cash", "商旅钱包，可以省钱的钱包","商旅钱包"));
-		adsList.add(new AdShow("http://b2b.51jp.cn/App_Themes/default/Images/Login_v2/banner1.jpg","http://www.51jp.cn/Cooperation.asp","商旅管家，一站式服务平台","商旅管家"));
-		
-		imageResId = new int[] { R.drawable.ad_two, R.drawable.ad_one, R.drawable.ad_three };
-		titles = new String[imageResId.length];
-		titles[0] = "舌尖上的美食，大闸蟹";
-		titles[1] = "商旅钱包，可以省钱的钱包";
-		titles[2] = "商旅管家，一站式服务平台";
+		try {
+			adsList = new ArrayList<AdShow>();
+			adsList.add(new AdShow(
+					"http://b2b.51jp.cn/App_Themes/default/Images/Login_v2/banner_dzx.gif",
+					"http://b2b.51jp.cn/ComInfoDetail.aspx?id=198",
+					"舌尖上的美食，大闸蟹", "大闸蟹"));
+			adsList.add(new AdShow(
+					"http://b2b.51jp.cn/App_Themes/default/Images/Login_v2/banner0.png",
+					"http://b2b.51jp.cn/Wallet/cash", "商旅钱包，可以省钱的钱包", "商旅钱包"));
+			adsList.add(new AdShow(
+					"http://b2b.51jp.cn/App_Themes/default/Images/Login_v2/banner1.jpg",
+					"http://www.51jp.cn/Cooperation.asp", "商旅管家，一站式服务平台",
+					"商旅管家"));
 
-		imageViews = new ArrayList<ImageView>();
+			imageResId = new int[] { R.drawable.ad_two, R.drawable.ad_one,
+					R.drawable.ad_three };
+			titles = new String[imageResId.length];
+			titles[0] = "舌尖上的美食，大闸蟹";
+			titles[1] = "商旅钱包，可以省钱的钱包";
+			titles[2] = "商旅管家，一站式服务平台";
 
-		// 初始化图片资源
-		for (int i = 0; i < adsList.size(); i++) {
-			ImageView imageView = new ImageView(this);
-			imageView.setImageResource(imageResId[i]);
-			imageView.setScaleType(ScaleType.CENTER_CROP);
-			imageViews.add(imageView);
+			imageViews = new ArrayList<ImageView>();
+
+			// 初始化图片资源
+			for (int i = 0; i < adsList.size(); i++) {
+				ImageView imageView = new ImageView(this);
+				imageView.setImageResource(imageResId[i]);
+				imageView.setScaleType(ScaleType.CENTER_CROP);
+				imageViews.add(imageView);
+			}
+			dots = new ArrayList<View>();
+			dot_ll = (LinearLayout) findViewById(R.id.dot_ll);
+			for (int i = 0; i < imageResId.length; i++) {
+				View view = null;
+				if (currentItem == i)
+					view = createView(true);
+				else
+					view = createView(false);
+				dots.add(view);
+				dot_ll.addView(view);
+			}
+
+			tv_title = (TextView) findViewById(R.id.tv_title);
+			tv_title.setText(titles[0]);//
+
+			viewPager = (ViewPager) findViewById(R.id.vp);
+			viewPager.setAdapter(new ViewPagerAdapter());// 设置填充ViewPager页面的适配器
+			// 设置一个监听器，当ViewPager中的页面改变时调用
+			viewPager.setOnPageChangeListener(new MyPageChangeListener());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		dots = new ArrayList<View>();
-		dot_ll = (LinearLayout) findViewById(R.id.dot_ll);
-		for (int i = 0; i < imageResId.length; i++) {
-			View view = null;
-			if (currentItem == i)
-				view = createView(true);
-			else
-				view = createView(false);
-			dots.add(view);
-			dot_ll.addView(view);
-		}
-
-		tv_title = (TextView) findViewById(R.id.tv_title);
-		tv_title.setText(titles[0]);//
-
-		viewPager = (ViewPager) findViewById(R.id.vp);
-		viewPager.setAdapter(new ViewPagerAdapter());// 设置填充ViewPager页面的适配器
-		// 设置一个监听器，当ViewPager中的页面改变时调用
-		viewPager.setOnPageChangeListener(new MyPageChangeListener());
 	}
 
 	@SuppressLint("NewApi")
@@ -304,18 +321,19 @@ public class HomeActivityNew extends Activity {
 
 	@Override
 	protected void onStart() {
+		super.onStart();
+
 		scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
 		// 当Activity显示出来后，每两秒钟切换一次图片显示
 		scheduledExecutorService.scheduleAtFixedRate(new ScrollTask(), 2, 3,
 				TimeUnit.SECONDS);
-		super.onStart();
 	}
 
 	@Override
 	protected void onStop() {
 		// 当Activity不可见的时候停止切换
-		scheduledExecutorService.shutdown();
 		super.onStop();
+		scheduledExecutorService.shutdown();
 	}
 
 	/**
@@ -324,9 +342,13 @@ public class HomeActivityNew extends Activity {
 	private class ScrollTask implements Runnable {
 		public void run() {
 			synchronized (viewPager) {
-				System.out.println("currentItem: " + currentItem);
-				currentItem = (currentItem + 1) % imageViews.size();
-				handler.obtainMessage().sendToTarget(); // 通过Handler切换图片
+				try {
+					System.out.println("currentItem: " + currentItem);
+					currentItem = (currentItem + 1) % imageViews.size();
+					handler.obtainMessage().sendToTarget(); // 通过Handler切换图片
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -371,12 +393,14 @@ public class HomeActivityNew extends Activity {
 			View view = imageViews.get(position);
 			view.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
-//					Toast.makeText(getApplicationContext(), position + "", 0)
-//							.show();
+					// Toast.makeText(getApplicationContext(), position + "", 0)
+					// .show();
 					Intent intent = new Intent(context,
 							Activity_Web_Frame.class);
-					intent.putExtra(Activity_Web_Frame.TITLE, adsList.get(position).getTitle());
-					intent.putExtra(Activity_Web_Frame.URL, adsList.get(position).getGoUrl());
+					intent.putExtra(Activity_Web_Frame.TITLE,
+							adsList.get(position).getTitle());
+					intent.putExtra(Activity_Web_Frame.URL,
+							adsList.get(position).getGoUrl());
 					startActivity(intent);
 				}
 			});

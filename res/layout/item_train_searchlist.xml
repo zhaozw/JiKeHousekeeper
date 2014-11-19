@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/list_item_color_bg"
-    android:paddingBottom="10dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp" >
+    android:gravity="center"
+    android:padding="10sp" >
 
     <LinearLayout
         android:id="@+id/time_train_ll"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left|center_vertical"
+        android:layout_weight="1"
+        android:gravity="center|left"
         android:orientation="vertical" >
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="22dp"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -39,6 +38,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="58dp"
                 android:text="高速动车"
+                android:singleLine="true"
                 android:textColor="@color/black6"
                 android:textSize="16sp" >
             </TextView>
@@ -47,7 +47,7 @@
         <TextView
             android:id="@+id/start_time_tv"
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:layout_height="wrap_content"
             android:text="09:30"
             android:textColor="@color/black"
             android:textSize="21sp" >
@@ -56,7 +56,7 @@
         <TextView
             android:id="@+id/arrive_time_tv"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:text="12:20"
             android:textColor="@color/black"
             android:textSize="18sp" >
@@ -65,24 +65,26 @@
 
     <LinearLayout
         android:id="@+id/city_ll"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="130dp"
+        android:layout_weight="1"
+        android:gravity="center|left"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/used_time_tv"
             android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+           
             android:text="历时： 05:41"
             android:textColor="#696969"
+            android:singleLine="true"
             android:textSize="16sp" >
         </TextView>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="23dp"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -90,7 +92,7 @@
                 android:id="@+id/start_station_icon_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+              
                 android:background="@drawable/trains_start" />
 
             <TextView
@@ -104,8 +106,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -113,7 +115,7 @@
                 android:id="@+id/end_station_icon_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+              
                 android:background="@drawable/train_final" />
 
             <TextView
@@ -129,18 +131,17 @@
 
     <LinearLayout
         android:id="@+id/price_ll"
-        android:layout_width="86dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="2dp"
-        android:gravity="left"
+        android:layout_weight="1"
+        android:gravity="center"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/seat_grad_tv"
             android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="二等座"
             android:textSize="18sp" >
         </TextView>
@@ -148,8 +149,8 @@
         <TextView
             android:id="@+id/price_tv"
             android:layout_width="wrap_content"
-            android:layout_height="23dp"
-            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="￥529.5"
             android:textColor="@color/price_yellow"
             android:textSize="20sp" >
@@ -158,8 +159,8 @@
         <TextView
             android:id="@+id/remain_count_tv"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="余票 4张"
             android:textColor="@color/black6"
             android:textSize="16sp" >
@@ -168,19 +169,16 @@
 
     <ImageView
         android:id="@+id/no_ticket_iv"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:background="@drawable/trainnovotes"
-        android:gravity="left" />
+        android:gravity="left"
+        android:visibility="gone" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
         android:background="@drawable/rightsmallarrow" />
 
-</RelativeLayout>
+</LinearLayout>

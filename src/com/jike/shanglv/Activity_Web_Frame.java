@@ -26,6 +26,7 @@ public class Activity_Web_Frame extends Activity {
 	public static final String URL = "redire_url";
 	public static final String TITLE = "activity_title";
 	private WebView webView;
+	private String url;
 	private LinearLayout loading_ll;
 	private ImageView frame_ani_iv;
 
@@ -62,7 +63,7 @@ public class Activity_Web_Frame extends Activity {
 			webView = (WebView) findViewById(R.id.webView);
 			WebSettings webSettings = webView.getSettings();
 			webSettings.setJavaScriptEnabled(true);// 在WebView中使用JavaScript，若页面中用了JavaScript，必须为WebView使能JavaScript
-			String url = getIntent().getExtras().getString(URL);
+			url = getIntent().getExtras().getString(URL);
 			String title = getIntent().getExtras().getString(TITLE);
 			((TextView) findViewById(R.id.title)).setText(title);
 
@@ -112,5 +113,10 @@ public class Activity_Web_Frame extends Activity {
 			finish();
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+	@Override
+	protected void onResume() {
+		webView.loadUrl(url);
+		super.onResume();
 	}
 }

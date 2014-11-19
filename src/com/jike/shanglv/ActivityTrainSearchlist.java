@@ -18,6 +18,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,6 @@ import com.jike.shanglv.Models.Seat;
 import com.jike.shanglv.Models.TrainListItem;
 import com.jike.shanglv.NetAndJson.HttpUtils;
 import com.jike.shanglv.NetAndJson.JSONHelper;
-
 
 public class ActivityTrainSearchlist extends Activity {
 
@@ -161,6 +161,8 @@ public class ActivityTrainSearchlist extends Activity {
 								intents.putExtra("SeatListString",
 										seatListString);
 								intents.putExtra("startcity", startcity);
+								intents.putExtra("startcity_code", startcity_code);
+								intents.putExtra("arrivecity_code", arrivecity_code);
 								intents.putExtra("arrivecity", arrivecity);
 								intents.putExtra("startdate", startoff_date);
 								startActivity(intents);
